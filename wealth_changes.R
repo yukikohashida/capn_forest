@@ -16,6 +16,9 @@ for(j in 1: size(site.sums)[1]){
   site.sums[j,3:4] <- colSums(temp[,6:7])
 }
 
+site.sums$vol.01.06 <- site.sums$vol.01.06/1000 # since the excel oreg_data volume is in board feet, convert to thousand board feet
+site.sums$vol.11.16 <- site.sums$vol.11.16/1000
+
 stargazer(site.sums, type = "text", summary = FALSE, 
           flip = FALSE, rownames = TRUE,
           title = "Sums of standing volume") 
@@ -148,7 +151,8 @@ site.sums <- rbind(site.sums,temp)
 stargazer(site.sums, type = "text", summary = FALSE, 
           flip = FALSE, rownames = TRUE,
           title = "Sums of standing volume") 
-#write_excel_csv(site.sums, "savedoutput/amenity_change.xls")
+
+write_excel_csv(site.sums, "savedoutput/amenity_change.xls")
 
 
 #########################################################################################
@@ -224,4 +228,4 @@ stargazer(val.table, type = "text", summary = FALSE,
           title = "Change in area and value") 
 
 
-#write_excel_csv(val.table, "savedoutput/value_change.xls")
+write_excel_csv(val.table, "savedoutput/value_change.xls")
